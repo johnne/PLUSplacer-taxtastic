@@ -123,7 +123,7 @@ def main(args):
 
         # build ref_pkg with info and tmp_tree and tmp_aln
         ref_pkg = "{}/{}.refpkg".format(output, outFile)
-        os.system("/projects/tallis/gchu4/aln_pp/methods/taxtastic/taxtastic-env/bin/taxit create -P {} -l {} --aln-fasta {} --tree-file {} --tree-stats {}".format(ref_pkg, name, refaln, tmp_tree, info))
+        os.system("./taxtastic/taxtastic-env/bin/taxit create -P {} -l {} --aln-fasta {} --tree-file {} --tree-stats {}".format(ref_pkg, name, refaln, tmp_tree, info))
         print("./pplacer -m {} -c {} -o {} -j 1 {} --timing".format(model, ref_pkg, tmp_output, tmp_aln))
         os.system("./pplacer -m {} -c {} -o {} -j 1 {} --timing".format(model, ref_pkg, tmp_output, tmp_aln))
 
