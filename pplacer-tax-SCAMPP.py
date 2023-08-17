@@ -43,19 +43,8 @@ def main(args):
     # read msa and reference tree
     t0 = time.perf_counter()
     tree = treeswift.read_tree_newick(tree_path)
-    #print(tree.num_nodes(leaves=True, internal=False))
-    #print([n.label for n in tree.traverse_leaves()])
-    #print(tree)
 
     leaf_dict = tree.label_to_node(selection=set([n.label for n in tree.traverse_leaves()])) #selection='leaves')
-    print("leaf_dict", leaf_dict)
-    #leaf_dict = tree.label_to_node(selection='leaves')
-    #for leaf_label in leaf_dict:
-    #    print(leaf_dict[leaf_label].is_leaf())
-    #print(len([n.label for n in tree.traverse_leaves()]))
-    #print(tree.num_nodes(leaves=True, internal=False))
-    #print(leaf_dict, len(leaf_dict), [leaf_dict[name].edge_length for name in leaf_dict])
-    #print(tree)
 
     for leaf in leaf_dict:
         assert leaf != ''
@@ -66,15 +55,15 @@ def main(args):
     if q_aln != "":
         ref_dict = utils.read_data(aln)
         q_dict = utils.read_data(q_aln)
-        print("ref_dict", ref_dict)
-        print("q_dict", q_dict)
+        #print("ref_dict", ref_dict)
+        #print("q_dict", q_dict)
     else:
         aln_dict = utils.read_data(aln)
-        print("reading in from alignment")
-        print("aln_dict", aln_dict)
+        #print("reading in from alignment")
+        #print("aln_dict", aln_dict)
         ref_dict, q_dict = utils.seperate(aln_dict, leaf_dict)
-        print("ref_dict", ref_dict)
-        print("q_dict", q_dict)
+        #print("ref_dict", ref_dict)
+        #print("q_dict", q_dict)
     
     jplace = dict()
     placements = []
