@@ -1,9 +1,9 @@
->test1 
+>test1
 tttgagagca
 >test2
 tttgagagct
 >test3
-ttaaggtctg
+ttgaggtctg
 >test4
 ttaaggtctc
 >test5
@@ -12,9 +12,9 @@ ttaaggtcta
 ttaaggtctg
 >test7
 ttaaggtcag
-> query1
+>query1
 ttaaggtctg
-> query2
+>query2
 ttaaggtcta
-> query3
+>query3
 ttaaggtcaa

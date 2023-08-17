@@ -43,15 +43,27 @@ def main(args):
     # read msa and reference tree
     t0 = time.perf_counter()
     tree = treeswift.read_tree_newick(tree_path)
-    tree.deroot()
-    leaf_dict = tree.label_to_node(selection='leaves')
+
+    leaf_dict = tree.label_to_node(selection=set([n.label for n in tree.traverse_leaves()])) #selection='leaves')
+
+    for leaf in leaf_dict:
+        assert leaf != ''
+    
+    if tree.root.num_children() == 2:
+        tree.deroot()
 
     if q_aln != "":
         ref_dict = utils.read_data(aln)
         q_dict = utils.read_data(q_aln)
+        #print("ref_dict", ref_dict)
+        #print("q_dict", q_dict)
     else:
         aln_dict = utils.read_data(aln)
+        #print("reading in from alignment")
+        #print("aln_dict", aln_dict)
         ref_dict, q_dict = utils.seperate(aln_dict, leaf_dict)
+        #print("ref_dict", ref_dict)
+        #print("q_dict", q_dict)
     
     jplace = dict()
     placements = []
@@ -88,6 +100,7 @@ def main(args):
             print('Closest sister taxon found: {}'.format(y[0]))
         else:
             y = utils.find_closest_hamming(seq, ref_dict, 1, frag_flag)
+            print(y)
             print ('Closest sister taxon found: {}'.format(y[0]))
             print ('{} seconds finding closest leaf'.format(time.perf_counter() - t0))
             node_y = leaf_dict[y[0]]
@@ -112,7 +125,8 @@ def main(args):
 
         subtree = tree.extract_tree_with(labels)
 
-        subtree.deroot()
+        if subtree.root.num_children() == 2:
+            subtree.deroot()
         utils.remove_edge_nbrs(subtree)
 
         subtree.write_tree_newick(tmp_tree, hide_rooted_prefix=True)
