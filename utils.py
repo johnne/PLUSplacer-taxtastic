@@ -35,10 +35,12 @@ def read_data(aln):
     taxa = ""
     seq = ""
     for line in f:
+        line = line.strip()
         if line[0] == '>':
             if taxa != "":
                 result[taxa] = seq
-            taxa = line[1:-1]
+            taxa = line[1:]
+            #taxa = line[1:-1]
             seq = ""
 
         elif line == "/n":

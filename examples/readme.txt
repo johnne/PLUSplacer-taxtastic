@@ -1,4 +1,6 @@
-FastTree -nosupport -gtr -gamma -nt -log /Users/gc3045/PLUSplacer-taxtastic/examples/bbtre.log -intree /Users/gc3045/PLUSplacer-taxtastic/examples/bbtre.nwk < /Users/gc3045/PLUSplacer-taxtastic/examples/ref.fasta > /Users/gc3045/PLUSplacer-taxtastic/examples/reest_bbtre.nwk
+./FastTree /Users/gc3045/PLUSplacer-taxtastic/examples2/ref.fasta > /Users/gc3045/PLUSplacer-taxtastic/examples2/bbtre.nwk
 
-python3 pplacer-tax-SCAMPP.py -i examples/bbtre.log -t examples/reest_bbtre.nwk -d examples/ -o output.jplace -a examples/aln.fasta -r examples/ref.fasta
+FastTree -nosupport -gtr -gamma -nt -log /Users/gc3045/PLUSplacer-taxtastic/examples2/bbtre.log -intree /Users/gc3045/PLUSplacer-taxtastic/examples2/bbtre.nwk < /Users/gc3045/PLUSplacer-taxtastic/examples2/ref.fasta > /Users/gc3045/PLUSplacer-taxtastic/examples2/reest_bbtre.nwk
+
+python3 pplacer-tax-SCAMPP.py -i examples2/bbtre.log -t examples2/reest_bbtre.nwk -d examples2/ -o output.jplace -a examples2/aln.fasta -r examples2/ref.fasta
 
