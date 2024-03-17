@@ -4,6 +4,7 @@ import heapq
 import treeswift
 import itertools
 from os.path import expanduser,isfile
+from Bio.SeqIO import parse
 
 # store bracket open/close for convenience in label parsing
 BRACKET = {
@@ -28,30 +29,9 @@ def read_data(aln):
     dictionary containing sequences with taxon label keys
     
     """
-
-    f = open(aln)
-    result = dict()
-
-    taxa = ""
-    seq = ""
-    for line in f:
-        line = line.strip()
-        if line[0] == '>':
-            if taxa != "":
-                result[taxa] = seq
-            taxa = line[1:]
-            #taxa = line[1:-1]
-            seq = ""
-
-        elif line == "/n":
-            continue
-        else:
-            seq += line[:-1]
-
-    if taxa != "":
-        result[taxa] = seq
-
-
+    result = {}
+    for record in parse(aln, "fasta"):
+        result[record.id] = str(record.seq)
     return result
 
 def seperate(aln_dict, leaf_dict):
