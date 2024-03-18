@@ -132,8 +132,8 @@ def main(args):
 
         # build ref_pkg with info and tmp_tree and tmp_aln
         ref_pkg = "{}/{}.refpkg".format(output, outFile)
-        print(f"taxtastic/taxtastic-env/bin/taxit create -P {ref_pkg} -l {name} --aln-fasta {refaln} --tree-file {tmp_tree} --tree-stats {info}")
-        os.system(f"taxtastic/taxtastic-env/bin/taxit create -P {ref_pkg} -l {name} --aln-fasta {refaln} --tree-file {tmp_tree} --tree-stats {info}")
+        print(f"taxit create -P {ref_pkg} -l {name} --aln-fasta {refaln} --tree-file {tmp_tree} --tree-stats {info}")
+        os.system(f"taxit create -P {ref_pkg} -l {name} --aln-fasta {refaln} --tree-file {tmp_tree} --tree-stats {info}")
         print(f"pplacer -m {model} -c {ref_pkg} -o {tmp_output} -j 1 {tmp_aln} --timing")
         os.system(f"pplacer -m {model} -c {ref_pkg} -o {tmp_output} -j 1 {tmp_aln} --timing")
 
